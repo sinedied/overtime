@@ -1,0 +1,16 @@
+<div>
+  <header>
+    <h1>{{ currentTime | time }} | {{ presentation.duration | time }}</h1>
+    <h4>{{ presentation.title }}</h4>
+  </header>
+  <p [innerHtml]="presentation.notes | safeHtml"></p>
+  <section *ngFor="let section of presentation.sections">
+    <h2>{{ section.title }} [{{ section.duration }}]</h2>
+  </section>
+  <footer>
+    <button (click)="startOrPause()">{{ started ? 'Pause' : 'Start' }}</button>
+    <button (click)="reset()" [disabled]="started">Reset</button>
+    <br/>
+    <textarea (change)="update($event)"></textarea>
+  </footer>
+</div>
